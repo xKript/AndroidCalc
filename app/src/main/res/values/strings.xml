@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Calculator</string>
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_about">About Me</string>
+    <string name="description">Basic Calculator</string>
+    <string name="connect_us">Connect with us</string>
+    <string name="version">Version</string>
+    <string name="about_us">About me...</string>
 </resources>

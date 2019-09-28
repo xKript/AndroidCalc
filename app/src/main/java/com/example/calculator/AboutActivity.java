@@ -14,21 +14,18 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Element versionElement = new Element();
-        versionElement.setTitle("Version 6.2");
+        versionElement.setTitle(getString(R.string.version)+" 0.1");
         View aboutPage = new AboutPage(AboutActivity.this)
-                .setDescription("Calculadora basica")
+                .setDescription(getString(R.string.description))
                 .isRTL(false)
                 .setImage(R.drawable.about_icon_facebook)
                 .addItem(versionElement)
-                .addGroup("Connect with us")
-                .addEmail("elmehdi.sakout@gmail.com")
-                .addWebsite("http://medyo.github.io/")
-                .addFacebook("the.medy")
-                .addTwitter("medyo80")
-                .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
-                .addPlayStore("com.ideashower.readitlater.pro")
-                .addGitHub("medyo")
-                .addInstagram("medyo80")
+                .addGroup(getString(R.string.connect_us))
+                .addEmail("juanpablobc495@gmail.com")
+                .addFacebook("juanpablo")
+                .addTwitter("almostHuman19")
+                .addGitHub("xKript","JuanP")
+                .addInstagram("juanpabloxt")
                 .create();
         setContentView(aboutPage);
     }

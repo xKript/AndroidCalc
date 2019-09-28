@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculadora</string>
+    <string name="title_activity_about">Acerca de</string>
+    <string name="description">Calculadora basica</string>
+    <string name="connect_us">Contactame</string>
+    <string name="version">Versión</string>
+    <string name="about_us">Acerca de...</string>
+</resources>
