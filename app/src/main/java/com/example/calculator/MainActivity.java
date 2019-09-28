@@ -16,7 +16,6 @@ import bsh.Interpreter;
 
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView result,operation;
     private final Interpreter interpreter;
     private View aboutPage;
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     {
         this.interpreter = new Interpreter();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * //https://beanshell.github.io/license.html
      */
+
     public void buttonClick(View v)
     {
         Button source = (Button)v;
