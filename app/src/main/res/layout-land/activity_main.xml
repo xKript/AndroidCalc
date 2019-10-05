@@ -16,7 +16,7 @@
             android:id="@+id/operation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="operation"
+            android:text=""
             android:textAlignment="textEnd"
             android:textColor="@color/secondary_text"
             android:textIsSelectable="false"
@@ -27,7 +27,7 @@
             android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="result"
+            android:text=""
             android:textAlignment="textEnd"
             android:textColor="@color/primary_text"
             android:textIsSelectable="false"
@@ -232,7 +232,7 @@
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/grayElements"
                     android:onClick="buttonClick"
-                    android:text="X"
+                    android:text="x"
                     android:textAllCaps="false"
                     android:textSize="30sp" />
 
