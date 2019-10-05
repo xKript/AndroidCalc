@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
+
 import bsh.EvalError;
 import bsh.Interpreter;
 
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     {
         this.interpreter = new Interpreter();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * //https://beanshell.github.io/license.html
      */
-
     public void buttonClick(View v)
     {
         Button source = (Button)v;
@@ -61,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             interpreter.eval("res = "+newOperation);
-            result.setText(interpreter.get("res").toString());
+            BigDecimal i = new BigDecimal(interpreter.get("res").toString());
+            i.setScale(2,BigDecimal.ROUND_HALF_EVEN);
+            result.setText(i.toPlainString());
         } catch (EvalError evalError) {}
     }
 
