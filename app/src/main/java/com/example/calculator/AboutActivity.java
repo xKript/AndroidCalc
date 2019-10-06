@@ -14,15 +14,15 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Element versionElement = new Element();
-        versionElement.setTitle(getString(R.string.version)+" 0.1");
+        versionElement.setTitle(getString(R.string.version)+" 1.1");
         View aboutPage = new AboutPage(AboutActivity.this)
                 .setDescription(getString(R.string.description))
                 .isRTL(false)
-                .setImage(R.drawable.about_icon_facebook)
+                .setImage(R.drawable.calculator_256)
                 .addItem(versionElement)
                 .addGroup(getString(R.string.connect_us))
-                .addEmail("juanpablobc495@gmail.com")
-                .addFacebook("juanpablo")
+                .addEmail("juanpablo495@hotmail.com")
+                .addFacebook("juanpablolel")
                 .addTwitter("almostHuman19")
                 .addGitHub("xKript","JuanP")
                 .addInstagram("juanpabloxt")

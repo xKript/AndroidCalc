@@ -11,20 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.math.BigDecimal;
-
-import bsh.EvalError;
-import bsh.Interpreter;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView result,operation;
-    private final Interpreter interpreter;
-    private View aboutPage;
+    private final ArrayList<String> trigonometricOps;
+    private static String lastOperation = "";
 
     public MainActivity()
     {
-        this.interpreter = new Interpreter();
+        this.trigonometricOps = new ArrayList<String>()
+        {{
+            add("sin");
+            add("cos");
+            add("tan");
+        }};
     }
 
     @Override
@@ -41,10 +43,27 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override public void onClick(View v)
             {
-                result.setText("");
-                operation.setText("");
+                CharSequence text = operation.getText();
+                if(text==null || text.toString().isEmpty()) {return;}
+                String oldTxt = text.toString();
+                String newTxt = oldTxt.substring(0,oldTxt.length()-1);
+                operation.setText(newTxt);
+                result.setText(MathEvaluator.evaluate(newTxt));
             }
         });
+
+        clean.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View view)
+            {
+                result.setText("");
+                operation.setText("");
+                return true;
+            }
+        });
+
+        checkIntent(getIntent());
     }
 
     /**
@@ -54,17 +73,11 @@ public class MainActivity extends AppCompatActivity {
     {
         Button source = (Button)v;
         String key = source.getText().toString();
-        CharSequence oldContent = operation.getText();
-        String oldText=(oldContent!=null)?oldContent.toString():"";
+        String oldText = getOperation();
         String newOperation = oldText+key;
-        operation.setText(newOperation);
-        try
-        {
-            interpreter.eval("res = "+newOperation);
-            BigDecimal i = new BigDecimal(interpreter.get("res").toString());
-            i.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-            result.setText(i.toPlainString());
-        } catch (EvalError evalError) {}
+        String parenthesis = (trigonometricOps.contains(key))?"(":"";
+        operation.setText(newOperation+parenthesis);
+        result.setText(MathEvaluator.evaluate(newOperation));
     }
 
     @Override
@@ -82,6 +95,41 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
+        else if(item.getItemId() == R.id.settings)
+        {
+            lastOperation = getOperation();
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
         return true;
     }
+
+    private String getOperation()
+    {
+        CharSequence curOperation = operation.getText();
+        return (curOperation!=null)?curOperation.toString():"";
+    }
+
+    private void checkIntent(Intent intent)
+    {
+        if(intent!=null)
+        {
+            Bundle extras = intent.getExtras();
+            if(extras==null) {return;}
+            String source = extras.getString("SOURCE");
+            if(source==null) {return;}
+            if(source.equals("SETTINGS"))
+            {
+                operation.setText(lastOperation);
+                result.setText(MathEvaluator.evaluate(lastOperation));
+            }
+        }
+    }
 }
+
+/*try
+{
+    String res = e.calculate()+"";
+    interpreter.eval(String.format("res = (%s)",newOperation));
+    result.setText(interpreter.get("res").toString());
+} catch (EvalError evalError) {}*/

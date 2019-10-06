@@ -3,4 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/about"
         android:title="@string/about_us" />
+    <item android:id="@+id/settings"
+        android:title="@string/settings" />
 </menu>
