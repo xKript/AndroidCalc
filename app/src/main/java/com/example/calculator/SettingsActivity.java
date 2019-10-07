@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

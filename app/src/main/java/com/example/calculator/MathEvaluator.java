@@ -10,6 +10,7 @@ public class MathEvaluator
 
     public static String evaluate(String expresion)
     {
+        if(expresion.isEmpty()) {return "";}
         Expression e = new Expression(expresion);
         try
         {

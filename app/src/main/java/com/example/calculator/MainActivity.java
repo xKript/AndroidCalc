@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-
 public class MainActivity extends AppCompatActivity {
     private TextView result,operation;
     private final ArrayList<String> trigonometricOps;
     private static String lastOperation = "";
+    private Button inverse;
 
     public MainActivity()
     {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         operation = findViewById(R.id.operation);
 
         Button clean = findViewById(R.id.button_clean);
+        inverse = findViewById(R.id.buttonInverse);
 
         clean.setOnClickListener(new View.OnClickListener()
         {
@@ -78,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
         String parenthesis = (trigonometricOps.contains(key))?"(":"";
         operation.setText(newOperation+parenthesis);
         result.setText(MathEvaluator.evaluate(newOperation));
+    }
+
+    public void invertNumber(View v)
+    {
+        String o = getOperation();
+        if(o.isEmpty()) {return;}
+        String newOp = "1/("+o+")";
+        String r = MathEvaluator.evaluate(newOp);
+        if(!r.isEmpty())
+        {
+            result.setText(r);
+            operation.setText(newOp);
+        }
     }
 
     @Override
@@ -126,10 +140,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-/*try
-{
-    String res = e.calculate()+"";
-    interpreter.eval(String.format("res = (%s)",newOperation));
-    result.setText(interpreter.get("res").toString());
-} catch (EvalError evalError) {}*/
