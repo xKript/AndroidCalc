@@ -12,6 +12,9 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        * https://github.com/medyo/android-about-page
+        * */
         super.onCreate(savedInstanceState);
         Element versionElement = new Element();
         versionElement.setTitle(getString(R.string.version)+" 1.1");

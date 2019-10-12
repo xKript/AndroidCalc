@@ -8,6 +8,9 @@ public class MathEvaluator
 {
     public static int precision = 2;
 
+    /*
+    * http://mathparser.org/
+    * */
     public static String evaluate(String expresion)
     {
         if(expresion.isEmpty()) {return "";}
